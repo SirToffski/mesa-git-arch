@@ -19,13 +19,22 @@ clone_upstream() {
     git clone https://aur.archlinux.org/xf86-video-intel-git.git
 }
 
+remove_packages_from_repo() {
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst llvm-minimal-git.*.pkg.tar.zst
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-llvm-minimal-git.*.pkg.tar.zst
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst mesa-git.*.pkg.tar.zst
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-mesa-git.*.pkg.tar.zst
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-amdgpu-git.*.pkg.tar.zst
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-intel-git.*.pkg.tar.zst
+}
+
 build_llvm-minimal-git() {
     sudo ccm n
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/llvm-minimal-git || exit
     MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
-    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst *.pkg.tar.zst
-    sudo pacman -Syyy
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst llvm-minimal-git.*.pkg.tar.zst
+    sudo pacman -Syyu --noconfirm
 }
 
 build_mesa-git() {
@@ -34,8 +43,8 @@ build_mesa-git() {
     cd /home/toffski/aur-pkg/mesa-gitlab/mesa-git || exit
     sed -i 's/    MESA_WHICH_LLVM=4/    MESA_WHICH_LLVM=1/g' PKGBUILD
     MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
-    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst *.pkg.tar.zst
-    sudo pacman -Syyy
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst mesa-git.*.pkg.tar.zst
+    sudo pacman -Syyu --noconfirm
 }
 
 build_lib32-llvm-minimal-git() {
@@ -43,8 +52,8 @@ build_lib32-llvm-minimal-git() {
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/lib32-llvm-minimal-git || exit
     paru -U --sudoloop --localrepo --mflags "--nocheck" --chroot='/home/toffski/toff_build_chroot/' --noconfirm
-    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst *.pkg.tar.zst
-    sudo pacman -Syyy
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-llvm-minimal-git.*.pkg.tar.zst
+    sudo pacman -Syyu --noconfirm
 }
 
 build_lib32-mesa-git() {
@@ -53,26 +62,27 @@ build_lib32-mesa-git() {
     cd /home/toffski/aur-pkg/mesa-gitlab/lib32-mesa-git || exit
     sed -i 's/    MESA_WHICH_LLVM=4/    MESA_WHICH_LLVM=1/g' PKGBUILD
     MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
-    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst *.pkg.tar.zst
-    sudo pacman -Syyy
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-mesa-git.*.pkg.tar.zst
+    sudo pacman -Syyu --noconfirm
 }
 
 build_xf86-video-amdgpu-git() {
     sudo ccm n
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/xf86-video-amdgpu-git || exit
-    MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
+    paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
 }
 
 xf86-video-intel-git() {
     sudo ccm n
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/xf86-video-intel-git || exit
-    MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
+    paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
 }
 
 main() {
     clone_upstream
+    remove_packages_from_repo
     build_llvm-minimal-git
     build_mesa-git
     build_lib32-llvm-minimal-git
