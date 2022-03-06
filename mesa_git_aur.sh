@@ -33,7 +33,7 @@ build_llvm-minimal-git() {
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/llvm-minimal-git || exit
     MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
-    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst llvm-minimal-git.*.pkg.tar.zst
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst llvm-minimal-git*.pkg.tar.zst
     sudo pacman -Syyu --noconfirm
 }
 
@@ -43,7 +43,7 @@ build_mesa-git() {
     cd /home/toffski/aur-pkg/mesa-gitlab/mesa-git || exit
     sed -i 's/    MESA_WHICH_LLVM=4/    MESA_WHICH_LLVM=1/g' PKGBUILD
     MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
-    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst mesa-git.*.pkg.tar.zst
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst mesa-git*.pkg.tar.zst
     sudo pacman -Syyu --noconfirm
 }
 
@@ -52,7 +52,7 @@ build_lib32-llvm-minimal-git() {
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/lib32-llvm-minimal-git || exit
     paru -U --sudoloop --localrepo --mflags "--nocheck" --chroot='/home/toffski/toff_build_chroot/' --noconfirm
-    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-llvm-minimal-git.*.pkg.tar.zst
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-llvm-minimal-git*.pkg.tar.zst
     sudo pacman -Syyu --noconfirm
 }
 
@@ -62,7 +62,7 @@ build_lib32-mesa-git() {
     cd /home/toffski/aur-pkg/mesa-gitlab/lib32-mesa-git || exit
     sed -i 's/    MESA_WHICH_LLVM=4/    MESA_WHICH_LLVM=1/g' PKGBUILD
     MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
-    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-mesa-git.*.pkg.tar.zst
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-mesa-git*.pkg.tar.zst
     sudo pacman -Syyu --noconfirm
 }
 
@@ -71,6 +71,7 @@ build_xf86-video-amdgpu-git() {
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/xf86-video-amdgpu-git || exit
     paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-amdgpu-git*.pkg.tar.zst
 }
 
 build_xf86-video-intel-git() {
@@ -78,6 +79,7 @@ build_xf86-video-intel-git() {
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/xf86-video-intel-git || exit
     paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
+    repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-amdgpu-git*.pkg.tar.zst
 }
 
 main() {
