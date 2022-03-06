@@ -32,7 +32,7 @@ build_llvm-minimal-git() {
     sudo ccm n
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-git-aur/llvm-minimal-git || exit
-    MESA_WHICH_LLVM=1 paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
+    paru -U --sudoloop --localrepo --mflags "--nocheck" --chroot='/home/toffski/toff_build_chroot/' --noconfirm
     repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.zst llvm-minimal-git*.pkg.tar.zst
     sudo pacman -Syyu --noconfirm
 }
