@@ -73,7 +73,7 @@ build_xf86-video-amdgpu-git() {
     paru -U --sudoloop --localrepo --chroot='/home/toffski/toff_build_chroot/' --noconfirm
 }
 
-xf86-video-intel-git() {
+build_xf86-video-intel-git() {
     sudo ccm n
     sudo ccm c
     cd /home/toffski/aur-pkg/mesa-gitlab/xf86-video-intel-git || exit
@@ -88,7 +88,7 @@ main() {
     build_lib32-llvm-minimal-git
     build_lib32-mesa-git
     build_xf86-video-amdgpu-git
-    xf86-video-intel-git
+    build_xf86-video-intel-git
 }
 
 main
