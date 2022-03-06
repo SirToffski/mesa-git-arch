@@ -1,6 +1,6 @@
 # mesa-git-arch
 
-A script to build `mesa-git`, `lib32-mesa-git`, `xf86-video-amdgpu-git` and `xf86-video-intel-git` AUR packages and add them to a local repository.
+A script to build `mesa-git`, `lib32-mesa-git`, `xf86-video-amdgpu-git` and `xf86-video-intel-git` AUR packages in a clean chroot and add them to a local repository.
 
 # Requirements
 
