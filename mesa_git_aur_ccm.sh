@@ -1,18 +1,22 @@
 #!/usr/bin/env bash
 
+script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+
 clone_upstream() {
     mkdir -p /home/toffski/aur-pkg/mesa-git-aur
     cd /home/toffski/aur-pkg/mesa-git-aur || exit
 
-    rm -rf ./llvm-minimal-git
-    rm -rf ./lib32-llvm-minimal-git
+    rm -rf ./python-sphinx-automodapi
+    rm -rf ./llvm-git
+    rm -rf ./lib32-llvm-git
     rm -rf ./mesa-git
     rm -rf ./lib32-mesa-git
     rm -rf ./xf86-video-amdgpu-git
     rm -rf ./xf86-video-intel-git
 
-    git clone https://aur.archlinux.org/llvm-minimal-git.git
-    git clone https://aur.archlinux.org/lib32-llvm-minimal-git.git
+    git clone https://aur.archlinux.org/python-sphinx-automodapi.git
+    git clone https://aur.archlinux.org/llvm-git.git
+    git clone https://aur.archlinux.org/lib32-llvm-git.git
     git clone https://aur.archlinux.org/mesa-git.git
     git clone https://aur.archlinux.org/lib32-mesa-git.git
     git clone https://aur.archlinux.org/xf86-video-amdgpu-git.git
@@ -20,68 +24,19 @@ clone_upstream() {
 }
 
 remove_packages_from_repo() {
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst llvm-minimal-git.*.pkg.tar.zst
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-llvm-minimal-git.*.pkg.tar.zst
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst mesa-git.*.pkg.tar.zst
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-mesa-git.*.pkg.tar.zst
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-amdgpu-git.*.pkg.tar.zst
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-intel-git.*.pkg.tar.zst
-}
-
-build_llvm-minimal-git() {
-    sudo ccm n
-    sudo ccm c
-    cd /home/toffski/aur-pkg/mesa-git-aur/llvm-minimal-git || exit
-    ccm s
-}
-
-build_mesa-git() {
-    sudo ccm n
-    sudo ccm c
-    cd /home/toffski/aur-pkg/mesa-git-aur/mesa-git || exit
-    sed -i 's/    MESA_WHICH_LLVM=4/    MESA_WHICH_LLVM=1/g' PKGBUILD
-    ccm s
-}
-
-build_lib32-llvm-minimal-git() {
-    sudo ccm n
-    sudo ccm c
-    cd /home/toffski/aur-pkg/mesa-git-aur/lib32-llvm-minimal-git || exit
-    sed -i 's/    MESA_WHICH_LLVM=4/    MESA_WHICH_LLVM=1/g' PKGBUILD
-    ccm s
-}
-
-build_lib32-mesa-git() {
-    sudo ccm n
-    sudo ccm c
-    cd /home/toffski/aur-pkg/mesa-git-aur/lib32-mesa-git || exit
-    sed -i 's/    MESA_WHICH_LLVM=4/    MESA_WHICH_LLVM=1/g' PKGBUILD
-    ccm s
-}
-
-build_xf86-video-amdgpu-git() {
-    sudo ccm n
-    sudo ccm c
-    cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-amdgpu-git || exit
-    ccm s
-}
-
-build_xf86-video-intel-git() {
-    sudo ccm n
-    sudo ccm c
-    cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-intel-git || exit
-    ccm s
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst python-sphinx-automodapi*
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst llvm-git*
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-git*
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst mesa-git*
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-mesa-git*
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-amdgpu-git*
+    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-intel-git*
 }
 
 main() {
     clone_upstream
     remove_packages_from_repo
-    build_llvm-minimal-git
-    build_mesa-git
-    build_lib32-llvm-minimal-git
-    build_lib32-mesa-git
-    build_xf86-video-amdgpu-git
-    build_xf86-video-intel-git
+    sudo bash "$script_directory/mesa_git_aur_ccm_build.sh"
 }
 
 main
