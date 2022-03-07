@@ -23,19 +23,8 @@ clone_upstream() {
     git clone https://aur.archlinux.org/xf86-video-intel-git.git
 }
 
-remove_packages_from_repo() {
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst python-sphinx-automodapi*
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst llvm-git*
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-git*
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst mesa-git*
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst lib32-mesa-git*
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-amdgpu-git*
-    repo-remove /home/toffski/toff_build_repo/toff-repo.db.tar.zst xf86-video-intel-git*
-}
-
 main() {
     clone_upstream
-    remove_packages_from_repo
     sudo bash "$script_directory/mesa_git_aur_ccm_build.sh"
 }
 
