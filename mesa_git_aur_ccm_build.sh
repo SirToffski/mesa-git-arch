@@ -2,6 +2,8 @@
 
 elevated_build_tasks() {
 
+ccm d
+
     build_python-sphinx-automodapi() {
         pacman -Syyu --noconfirm
         ccm n
