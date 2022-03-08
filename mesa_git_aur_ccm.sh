@@ -23,7 +23,7 @@ elevated_build_tasks() {
     build_mesa-git() {
         pacman -Syyu --noconfirm
         ccm n
-        sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/home\/toffski\/\.makepkg\.laptop\.o3\.conf\"/g' \
+        sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/home\/toffski\/makepkg-x86_64_O3\.conf\"/g' \
             /home/toffski/.config/clean-chroot-manager.conf
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/mesa-git || exit
