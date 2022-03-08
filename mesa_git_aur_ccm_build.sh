@@ -5,7 +5,6 @@ elevated_build_tasks() {
     build_python-sphinx-automodapi() {
         pacman -Syyu --noconfirm
         ccm n
-        rm /home/toffski/toff_build_repo/python-sphinx-automodapi*.pkg.tar.zst
         sed -i -E 's/.*BUILD32BIT.*/BUILD32BIT=/g' \
             /home/toffski/.config/clean-chroot-manager.conf
         sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/usr\/share\/devtools\/makepkg-x86_64\.conf"/g' \
@@ -18,7 +17,6 @@ elevated_build_tasks() {
     build_llvm-git() {
         pacman -Syyu --noconfirm
         ccm n
-        rm /home/toffski/toff_build_repo/llvm-git*.pkg.tar.zst
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/llvm-git || exit
         ccm s
@@ -27,7 +25,6 @@ elevated_build_tasks() {
     build_mesa-git() {
         pacman -Syyu --noconfirm
         ccm n
-        rm /home/toffski/toff_build_repo/mesa-git*.pkg.tar.zst
         sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/home\/toffski\/\.makepkg\.laptop\.o3\.conf\"/g' \
             /home/toffski/.config/clean-chroot-manager.conf
         ccm c
@@ -40,7 +37,6 @@ elevated_build_tasks() {
     build_lib32-llvm-git() {
         pacman -Syyu --noconfirm
         ccm n
-        rm /home/toffski/toff_build_repo/lib32-llvm-git*.pkg.tar.zst
         sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/usr\/share\/devtools\/makepkg-x86_64\.conf"/g' \
             /home/toffski/.config/clean-chroot-manager.conf
         ccm c
@@ -52,7 +48,6 @@ elevated_build_tasks() {
     build_lib32-mesa-git() {
         pacman -Syyu --noconfirm
         ccm n
-        rm /home/toffski/toff_build_repo/lib32-mesa-git*.pkg.tar.zst
         sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/home\/toffski\/makepkg-x86_64_O3\.conf\"/g' \
             /home/toffski/.config/clean-chroot-manager.conf
         sed -i -E 's/.*BUILD32BIT.*/BUILD32BIT=yesplz/g' \
@@ -66,7 +61,8 @@ elevated_build_tasks() {
     build_xf86-video-amdgpu-git() {
         pacman -Syyu --noconfirm
         ccm n
-        rm /home/toffski/toff_build_repo/xf86-video-amdgpu-git*.pkg.tar.zst
+        sed -i -E 's/.*BUILD32BIT.*/BUILD32BIT=/g' \
+            /home/toffski/.config/clean-chroot-manager.conf
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-amdgpu-git || exit
         ccm s
@@ -75,7 +71,6 @@ elevated_build_tasks() {
     build_xf86-video-intel-git() {
         pacman -Syyu --noconfirm
         ccm n
-        rm /home/toffski/toff_build_repo/xf86-video-intel-git*.pkg.tar.zst
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-intel-git || exit
         ccm s
