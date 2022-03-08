@@ -31,3 +31,5 @@ DEBUG_CXXFLAGS="$DEBUG_CFLAGS"
 Using `-O3` is not usually recommended, it is done for testing purposes only. Instead, `-O2` is more suitable for daily use.
 
 Remaining packages use standard `/usr/share/devtools/makepkg-x86_64.conf`.
+
+For more info in safe CFLAGS, Gentoo wiki is a good source: https://wiki.gentoo.org/wiki/Safe_CFLAGS#Manual
