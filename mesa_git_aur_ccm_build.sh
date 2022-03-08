@@ -59,8 +59,6 @@ elevated_build_tasks() {
     build_xf86-video-amdgpu-git() {
         pacman -Syyu --noconfirm
         ccm n
-        sed -i -E 's/.*BUILD32BIT.*/BUILD32BIT=/g' \
-            /home/toffski/.config/clean-chroot-manager.conf
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-amdgpu-git || exit
         ccm s
@@ -71,6 +69,7 @@ elevated_build_tasks() {
         ccm n
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-intel-git || exit
+        sed -i "s/'libxv'/'libxv' 'libxfont2'/g" PKGBUILD
         ccm s
     }
 
