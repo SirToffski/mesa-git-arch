@@ -55,6 +55,8 @@ elevated_build_tasks() {
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/lib32-mesa-git || exit
         sed -i 's/ MESA_WHICH_LLVM=4/ MESA_WHICH_LLVM=2/g' PKGBUILD
+        sed -i "s/'lib32-libvdpau'//g" PKGBUILD
+        sed -i "s/'lib32-zstd')/'lib32-zstd' 'lib32-libvdpau')/g" PKGBUILD
         ccm s
     }
 
