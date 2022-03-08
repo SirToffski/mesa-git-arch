@@ -20,7 +20,7 @@ clone_upstream() {
     git clone https://aur.archlinux.org/mesa-git.git
     git clone https://aur.archlinux.org/lib32-mesa-git.git
     git clone https://aur.archlinux.org/xf86-video-amdgpu-git.git
-    git clone https://aur.archlinux.org/xf86-video-intel-git.git
+    mkdir -p /home/toffski/aur-pkg/mesa-git-aur/xf86-video-intel-git
     
     sudo ccm d
     repo-add /home/toffski/toff_build_repo/toff-repo.db.tar.gz
