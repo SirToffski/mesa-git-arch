@@ -5,8 +5,6 @@ elevated_build_tasks() {
     build_python-sphinx-automodapi() {
         pacman -Syyu --noconfirm
         ccm n
-        sed -i -E 's/.*BUILD32BIT.*/BUILD32BIT=/g' \
-            /home/toffski/.config/clean-chroot-manager.conf
         sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/usr\/share\/devtools\/makepkg-x86_64\.conf"/g' \
             /home/toffski/.config/clean-chroot-manager.conf
         ccm c
@@ -49,8 +47,6 @@ elevated_build_tasks() {
         pacman -Syyu --noconfirm
         ccm n
         sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/home\/toffski\/makepkg-x86_64_O3\.conf\"/g' \
-            /home/toffski/.config/clean-chroot-manager.conf
-        sed -i -E 's/.*BUILD32BIT.*/BUILD32BIT=yesplz/g' \
             /home/toffski/.config/clean-chroot-manager.conf
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/lib32-mesa-git || exit
