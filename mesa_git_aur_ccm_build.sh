@@ -69,7 +69,8 @@ elevated_build_tasks() {
         ccm n
         ccm c
         cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-intel-git || exit
-        sed -i "s/'libxv'/'libxv' 'libxfont2'/g" PKGBUILD
+        wget 'https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xf86-video-intel/trunk/PKGBUILD'
+        wget 'https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xf86-video-intel/trunk/xf86-video-intel.install'
         ccm s
     }
 
