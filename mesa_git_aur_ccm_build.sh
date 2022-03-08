@@ -64,15 +64,15 @@ elevated_build_tasks() {
         ccm s
     }
 
-    build_xf86-video-intel-git() {
-        pacman -Syyu --noconfirm
-        ccm n
-        ccm c
-        cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-intel-git || exit
-        wget 'https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xf86-video-intel/trunk/PKGBUILD'
-        wget 'https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xf86-video-intel/trunk/xf86-video-intel.install'
-        ccm s
-    }
+    # build_xf86-video-intel-git() {
+    #    pacman -Syyu --noconfirm
+    #    ccm n
+    #    ccm c
+    #    cd /home/toffski/aur-pkg/mesa-git-aur/xf86-video-intel-git || exit
+    #    wget 'https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xf86-video-intel/trunk/PKGBUILD'
+    #    wget 'https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xf86-video-intel/trunk/xf86-video-intel.install'
+    #    ccm s
+    # }
 
     build_python-sphinx-automodapi || exit
     build_llvm-git || exit
@@ -80,7 +80,7 @@ elevated_build_tasks() {
     build_lib32-llvm-git || exit
     build_lib32-mesa-git || exit
     build_xf86-video-amdgpu-git || exit
-    build_xf86-video-intel-git || exit
+    # build_xf86-video-intel-git || exit
 
 }
 
