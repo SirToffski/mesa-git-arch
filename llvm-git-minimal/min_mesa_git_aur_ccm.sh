@@ -34,6 +34,12 @@ clone_upstream() {
     git clone https://aur.archlinux.org/python-sphinx-automodapi.git
     git clone https://aur.archlinux.org/llvm-minimal-git.git
     git clone https://aur.archlinux.org/lib32-llvm-minimal-git.git
+    ######
+    # Building mesa-git with LLVM 15 could require a patch and
+    # an updated PKGBUID. If build fails, try using the following instead of AUR:
+    # https://gist.github.com/SirToffski/37b5022a05ab8a62d9e26270912da7b7
+    # For more info, see https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/15232/diffs?commit_id=a57364813e0e02da1b5388922d0918306f15dd54
+    ######
     git clone https://aur.archlinux.org/mesa-git.git
     git clone https://aur.archlinux.org/lib32-mesa-git.git
     git clone https://aur.archlinux.org/xf86-video-amdgpu-git.git
