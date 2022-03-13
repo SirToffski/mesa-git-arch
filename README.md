@@ -63,8 +63,6 @@ In addition, there are two separate `makepkg.conf` files used.
  # vim: set ft=sh ts=2 sw=2 et:
 ```
 
-Using `-O3` is not usually recommended, it is done for testing purposes only. Instead, `-O2` is more suitable for daily use.
-
-Remaining packages use standard `/usr/share/devtools/makepkg-x86_64.conf`.
+Using `-O3` is not usually recommended; consider using `-O2` instead.
 
 For more info in safe CFLAGS, Gentoo wiki is a good source: https://wiki.gentoo.org/wiki/Safe_CFLAGS#Manual
