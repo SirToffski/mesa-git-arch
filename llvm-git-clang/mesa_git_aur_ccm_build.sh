@@ -45,9 +45,6 @@ elevated_build_tasks() {
         sed -i -E 's/.*CUSTOM_MAKEPKG_CONF.*/CUSTOM_MAKEPKG_CONF=\"\/home\/toffski\/makepkg-x86_64_O3_LLVM\.conf\"/g' \
             /home/toffski/.config/clean-chroot-manager.conf
 
-        sed -i -E 's/.*USELLVM.*/#USELLVM=1/g' \
-            /home/toffski/.config/clean-chroot-manager.conf
-
         ccm c
         cd /home/toffski/arch-llvm/mesa-git-aur/mesa-git || exit
         sed -i 's/ MESA_WHICH_LLVM=4/ MESA_WHICH_LLVM=2/g' PKGBUILD
@@ -57,8 +54,6 @@ elevated_build_tasks() {
     build_xf86-video-amdgpu-git() {
         pacman -Syyu --noconfirm
         ccm n
-        sed -i -E 's/.*USELLVM.*/USELLVM=1/g' \
-            /home/toffski/.config/clean-chroot-manager.conf
         ccm c
         cd /home/toffski/arch-llvm/mesa-git-aur/xf86-video-amdgpu-git || exit
         ccm s
